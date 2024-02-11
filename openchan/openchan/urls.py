@@ -19,9 +19,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from main_app.views import index
+from main_app.views import index, board_b
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    
+    path('', index, name="home"),
+
+    path('b', board_b, name="/b/")
 ]
