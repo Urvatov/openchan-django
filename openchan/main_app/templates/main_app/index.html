@@ -3,14 +3,38 @@
 
 {%block body%}
 
-<h1>OpenChan</h1>
+<div class="content">
+
+<h1 style="color: lawngreen;">OpenChan</h1>
 
 <p>An open source imageboard</p>
 
 <p>Доски:</p>
 
-<ul>
-    <li><a href="{% url '/b/' %}">/b/</a></li>
-</ul>
+</div>
+
+
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Доска</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Всего постов</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><a href="{% url '/b/' %}">/b/</a></td>
+            <td>Бред</td>
+            <td>Свободное общение</td>
+            <td>Постов</td>
+        </tr>
+    </tbody>
+</table>
 
 {%endblock body%}
