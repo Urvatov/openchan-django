@@ -12,3 +12,8 @@ class Thread(models.Model):
     title = models.CharField(max_length= 64)
     text = models.TextField(blank = True)
     creation_time = models.DateTimeField(auto_now_add = True)
+    
+class Post(models.Model):
+    user_name = models.CharField(max_length = 64)
+    text = models.TextField(blank = True)
+    creation_time = models.DateTimeField(auto_now_add = True)
