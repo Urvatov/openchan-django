@@ -8,10 +8,17 @@ class Board(models.Model):
     description = models.TextField(blank = True)
     all_posts = models.IntegerField()
 
+    def __str__(self) -> str:
+        return self.tag
+
 class Thread(models.Model):
     title = models.CharField(max_length= 64)
     text = models.TextField(blank = True)
     creation_time = models.DateTimeField(auto_now_add = True)
+    update_time = models.DateTimeField()
+
+    def __str__(self) -> str:
+        return self.title
     
 class Post(models.Model):
     user_name = models.CharField(max_length = 64, default = "Аноним")
