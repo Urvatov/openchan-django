@@ -25,3 +25,5 @@ class Post(models.Model):
     text = models.TextField(blank = True)
     creation_time = models.DateTimeField(auto_now_add = True)
 
+    
+
