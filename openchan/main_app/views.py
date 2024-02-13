@@ -1,19 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from main_app.models import Post
 
-from main_app.models import Board
-# Create your views here.
-
+from main_app.models import Board, Thread
 
 
 def index(request):
     boards = Board.objects.all()
-    print(boards)
     data = {"boards" : boards}
-    print(data)
     return render(request, "main_app/index.html", context=data)
     
-def board_b(request):
-    return render(request, "main_app/board.html")
+def board(request):
+
+    threads = Thread.objects.filter(board_id = 1)
+    data = {"threads" : threads}
+    return render(request, "main_app/board.html", context=data)

@@ -27,7 +27,7 @@
 {%for board in boards%}
     <tbody>
         <tr>
-            <td><a href="{% url '/b/' %}">{{board.tag}}</a></td>
+            <td><a href="{% url 'board'%}">{{board.tag}}</a></td>
             <td>{{board.title}}</td>
             <td>{{board.description}}</td>
             <td>{{board.all_posts}}</td>
