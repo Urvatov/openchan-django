@@ -8,5 +8,6 @@ urlpatterns = [
     
     path('', index, name="home"),
 
-    path('/b/', board, name="board")
+    path('<str:board_tag>/', board, name="board"),
+
 ]

@@ -10,7 +10,7 @@ class Board(models.Model):
         return self.tag
 
 class Thread(models.Model):
-    board = models.ForeignKey(Board, on_delete = models.CASCADE, default = 0)
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, default = 0)
     title = models.CharField(max_length= 64)
     text = models.TextField(blank = True)
     creation_time = models.DateTimeField(auto_now_add = True)
@@ -20,6 +20,8 @@ class Thread(models.Model):
         return self.title
     
 class Post(models.Model):
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, default = 0)
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, default = 0)
     user_name = models.CharField(max_length = 64, default = "Аноним")
     text = models.TextField(blank = True)
     creation_time = models.DateTimeField(auto_now_add = True)

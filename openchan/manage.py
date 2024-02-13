@@ -16,13 +16,19 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     
-    run_server()
+    
     execute_from_command_line(sys.argv)
 
 def run_server():
     if 'runserver' not in sys.argv:
         sys.argv.append('runserver')
-    
+
+def cmd():
+    #python manage.py runserver
+    #python manage.py makemigrations
+    #python manage.py migrate
+    pass
 
 if __name__ == '__main__':
+    run_server()
     main()
