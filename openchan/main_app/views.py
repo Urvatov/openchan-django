@@ -3,14 +3,17 @@ from django.http import HttpResponse
 
 from main_app.models import Post
 
-import main_app.models as main
+from main_app.models import Board
 # Create your views here.
 
 
 
 def index(request):
-    
-    return render(request, "main_app/index.html")
+    boards = Board.objects.all()
+    print(boards)
+    data = {"boards" : boards}
+    print(data)
+    return render(request, "main_app/index.html", context=data)
     
 def board_b(request):
     return render(request, "main_app/board.html")
