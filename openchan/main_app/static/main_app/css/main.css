@@ -12,6 +12,18 @@ a
     color: lawngreen
 }
 
+.center
+{
+    position: relative;
+    text-align: center;
+}
+
+table
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 table, th, td
 {
     border: 1px solid;
@@ -19,6 +31,11 @@ table, th, td
     border-color: rgb(128, 128, 128);
 }
 
+
+.search
+{
+    position: relative;
+}
 
 .thread-grid
 {
@@ -57,4 +74,20 @@ table, th, td
     text-align: center;
     background-color: #38444d;
     font-weight: bold;
+    max-height: 20%;
+    overflow: hidden;
+}
+
+.thread-text
+{
+    color: red;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.posting-form button, textarea, input
+{
+    background-color: #192734;
+    color: white;
 }

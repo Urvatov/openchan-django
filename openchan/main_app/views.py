@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 
 from main_app.models import Post
@@ -14,10 +14,23 @@ def index(request):
 def board(request, board_tag):
     board_instance = Board.objects.get(tag=board_tag)
     threads = Thread.objects.filter(board=board_instance)
+    data = {"threads" : threads, "board_tag" : board_tag}
 
-    data = {"threads" : threads}
+    if request.method == "POST":
+        create_thread(request, board_instance)
     return render(request, "main_app/board.html", context=data)
 
-def thread(request, board_tag, thread_id):
+def create_thread(request, board):
+        thread = Thread()
+        thread.title = request.POST.get("thread_title")
+        thread.text = request.POST.get("thread_text")
+        thread.board = board
+        thread.save()
+        print(f"Тред {thread.title} создан")
 
+        return redirect('board/')
+
+        
+
+def thread(request, board_tag, thread_id):
     return HttpResponse(request, f"{thread_id}")

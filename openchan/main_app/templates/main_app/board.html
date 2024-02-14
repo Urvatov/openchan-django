@@ -9,83 +9,39 @@
 
 
 
-<a href="">Создать тред</a>
-<form action="">
-<p><input type="text"  placeholder="Название"></p>
+<button onclick="togglePostingForm()" id="posting-button">Создать тред </button>
 
-<p><textarea cols="30" rows="10" placeholder="Текст"></textarea></p>
+<div class="posting-form" id="posting-form" style="display: none;">
+    <form action="" method="post">
+        {% csrf_token %}
+        <p><input type="text" placeholder="Название" name="thread_title" required></p>
+        <p><textarea cols="30" rows="10" name="thread_text" placeholder="Текст"></textarea></p>
+        <p>Добавить файл<input type="file" value=""></p>
+        <p><button type="submit">Отправить</button></p>
+    </form>
+</div>
 
-<p><input type="file" >Добавить</p>
-</form>
 
+<div class="search">
 <select>
     <option>По бампам</option>
     <option>По времени</option>
 </select>
-<input type="search">
 
-<p></p>
-
+<input type="search" placeholder="Поиск...">
+</div>
 
 <div class = "thread-grid">
 
     {%for thread in threads%}
-    
     <div class = "thread-window">
-        <a href="{% url 'thread' board_tag='b' thread_id=1 %}"><img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка"></a>
-        <p class="thread-title"> Постов: 0/ Файлов: 0
-            <br>{{thread.title}}</p>
-        <p>{{thread.text}}</p>
+        <a href="{% url 'thread' board_tag=board_tag thread_id=thread.id %}"><img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка"></a>
+        <div class="thread-title"> Постов: 0/ Файлов: 0
+            <br>{{thread.title}}</div>
+        <div class="thread-text">{{thread.text}}</div>
     </div>
     {% endfor %}
 
-    <div class = "thread-window">
-        <img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка">
-        <p class="thread-title">name</p>
-        <p>text</p>
-    </div>
 
-    <div class = "thread-window">
-        <img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка">
-        <p class="thread-title">name</p>
-        <p>text</p>
-    </div>
-
-    <div class = "thread-window">
-        <img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка">
-        <p class="thread-title">name</p>
-        <p>text</p>
-    </div>
-
-    <div class = "thread-window">
-        <img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка">
-        <p class="thread-title">name</p>
-        <p>text</p>
-    </div>
-
-    <div class = "thread-window">
-        <img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка">
-        <p class="thread-title">name</p>
-        <p>text</p>
-    </div>
-
-    <div class = "thread-window">
-        <img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка">
-        <p class="thread-title">name</p>
-        <p>text</p>
-    </div>
-
-    <div class = "thread-window">
-        <img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка">
-        <p class="thread-title">name</p>
-        <p>text</p>
-    </div>
-
-    <div class = "thread-window">
-        <img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка">
-        <p class="thread-title">name</p>
-        <p>text</p>
-    </div>
-</div>
-
+<script src="{% static 'main_app/js/board.js' %}"></script> 
 {%endblock body%}
