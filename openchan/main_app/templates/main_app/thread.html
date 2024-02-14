@@ -1,0 +1,32 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+
+{%block body%}
+
+<h1>{{board.title}}</h1>
+
+{% for post in posts %}
+
+<p><div class="thread-post">
+    <div class="post-info">{{post.user_name}} {{post.creation_time}} {{post.id}}</div>
+    <p>{{post.text}}</p>
+</div></p>
+
+{% endfor %}
+
+
+<div class="posting-form" id="posting-form">
+    <form action="" method="post">
+        {% csrf_token %}
+        <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name"></p>
+        
+        <p><textarea cols="30" rows="10" name="post_text" placeholder="Текст"></textarea></p>
+        <p>Добавить файл<input type="file" value=""></p>
+        <p><button type="submit">Отправить</button></p>
+    </form>
+</div>
+
+
+
+{%endblock body%}

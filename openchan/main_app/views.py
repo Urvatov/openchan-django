@@ -33,4 +33,23 @@ def create_thread(request, board):
         
 
 def thread(request, board_tag, thread_id):
-    return HttpResponse(request, f"{thread_id}")
+    board_instance = Board.objects.get(tag=board_tag)
+    thread_instance = Thread.objects.get(id=thread_id)
+    posts = Post.objects.all()
+    data = {"posts" : posts}
+
+    if request.method == "POST":
+        create_post(request, board_instance, thread_instance)
+
+    return render(request, "main_app/thread.html", context=data)
+
+
+def create_post(request, board, thread):
+    post = Post()
+    post.user_name = request.POST.get("user_name")
+    post.text = request.POST.get("post_text")
+    post.board = board
+    post.thread = thread
+    thread.all_posts += 1
+    board.all_posts += 1
+    post.save()

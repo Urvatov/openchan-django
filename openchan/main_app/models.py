@@ -17,7 +17,7 @@ class Thread(models.Model):
     creation_time = models.DateTimeField(auto_now_add = True)
     update_time = models.DateTimeField(auto_now = True)
 
-    #all_posts = models.IntegerField()
+    all_posts = models.IntegerField(default = 0)
 
     def __str__(self) -> str:
         return self.title
