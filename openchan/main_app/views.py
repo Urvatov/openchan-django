@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.http import HttpResponse
 
 from main_app.models import Post
@@ -17,7 +18,7 @@ def board(request, board_tag):
     data = {"threads" : threads, "board_tag" : board_tag}
 
     if request.method == "POST":
-        create_thread(request, board_instance)
+        return create_thread(request, board_instance)
     return render(request, "main_app/board.html", context=data)
 
 def create_thread(request, board):
@@ -28,7 +29,8 @@ def create_thread(request, board):
         thread.save()
         print(f"Тред {thread.title} создан")
 
-        return redirect('board/')
+        thread_url = reverse('thread', args=[board.tag, thread.id])
+        return redirect(thread_url)
 
         
 
@@ -39,7 +41,7 @@ def thread(request, board_tag, thread_id):
     data = {"posts" : posts, "thread" : thread_instance}
 
     if request.method == "POST":
-        create_post(request, board_instance, thread_instance)
+        return create_post(request, board_instance, thread_instance)
 
     return render(request, "main_app/thread.html", context=data)
 
@@ -57,3 +59,7 @@ def create_post(request, board, thread):
     board.save()
 
     post.save()
+
+    print(f"Пост {post.id} создан")
+
+    return redirect(request.path)
