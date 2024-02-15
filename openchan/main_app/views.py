@@ -25,6 +25,7 @@ def create_thread(request, board):
         thread = Thread()
         thread.title = request.POST.get("thread_title")
         thread.text = request.POST.get("thread_text")
+        thread.image = request.FILES['image']
         thread.board = board
         thread.save()
         print(f"Тред {thread.title} создан")

@@ -7,7 +7,7 @@ function togglePostingForm()
 
     if (form.style.display === "none") 
     {
-        form.style.display = "block"; // Показываем div
+        form.style.display = "inline-block"; // Показываем div
         button.textContent = "Закрыть форму постинга"
     } 
 

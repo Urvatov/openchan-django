@@ -14,6 +14,7 @@ class Thread(models.Model):
 
     title = models.CharField(max_length= 64)
     text = models.TextField(blank = True)
+    image = models.ImageField(upload_to="images/")
     creation_time = models.DateTimeField(auto_now_add = True)
     update_time = models.DateTimeField(auto_now = True)
 
