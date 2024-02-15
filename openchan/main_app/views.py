@@ -36,7 +36,7 @@ def thread(request, board_tag, thread_id):
     board_instance = Board.objects.get(tag=board_tag)
     thread_instance = Thread.objects.get(id=thread_id)
     posts = Post.objects.all()
-    data = {"posts" : posts}
+    data = {"posts" : posts, "thread" : thread_instance}
 
     if request.method == "POST":
         create_post(request, board_instance, thread_instance)
@@ -50,6 +50,12 @@ def create_post(request, board, thread):
     post.text = request.POST.get("post_text")
     post.board = board
     post.thread = thread
+
     thread.all_posts += 1
+    thread.save()
     board.all_posts += 1
+    board.save()
+
+
+    print(thread.all_posts)
     post.save()

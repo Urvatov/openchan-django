@@ -36,7 +36,7 @@
     {%for thread in threads%}
     <div class = "thread-window">
         <a href="{% url 'thread' board_tag=board_tag thread_id=thread.id %}"><img class="thread-image" src="{% static 'main_app/img/2ch.jpg' %}" alt="картинка"></a>
-        <div class="thread-title"> Постов: 0/ Файлов: 0
+        <div class="thread-title"> Постов: {{thread.all_posts}}/ Файлов: 0
             <br>{{thread.title}}</div>
         <div class="thread-text">{{thread.text}}</div>
     </div>
