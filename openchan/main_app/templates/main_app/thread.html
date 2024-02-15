@@ -8,6 +8,7 @@
 
 <p><div class="thread-post">
     <div class="post-info">ОП {{thread.creation_time|date:"d/Y/H:i" }} {{thread.id}}</div>
+    <p><b>{{thread.title}}</b></p>
     <p>{{thread.text}}</p>
 </div></p>
 
@@ -15,7 +16,7 @@
 
 {% for post in posts %}
 <p><div class="thread-post">
-    <div class="post-info">{{post.user_name}} {{post.creation_time|date:"d/Y/H:i" }} {{post.id}}</div>
+    <div class="post-info">{{post.user_name}} {{post.creation_time|date:"d/m/Y:i"}} {{post.creation_time|date:"H:i:s"}} {{post.id}}</div>
     <p>{{post.text}}</p>
 </div></p>
 

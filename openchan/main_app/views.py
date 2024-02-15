@@ -35,7 +35,7 @@ def create_thread(request, board):
 def thread(request, board_tag, thread_id):
     board_instance = Board.objects.get(tag=board_tag)
     thread_instance = Thread.objects.get(id=thread_id)
-    posts = Post.objects.all()
+    posts = Post.objects.filter(thread_id=thread_id)
     data = {"posts" : posts, "thread" : thread_instance}
 
     if request.method == "POST":
@@ -56,6 +56,4 @@ def create_post(request, board, thread):
     board.all_posts += 1
     board.save()
 
-
-    print(thread.all_posts)
     post.save()
