@@ -102,9 +102,18 @@ table, th, td
 
     display: inline-block;
     padding: 5px;
+
+    text-wrap: pretty;
 }
 
 .post-info
 {
     color: #7d7d7d;
+}
+
+.post-text {
+    word-wrap: break-word; /* Перенос слов */
+    overflow-wrap: break-word; /* Поддержка старых браузеров */
+    overflow: hidden; /* Скрытие текста, выходящего за границы */
+    white-space: pre-line; /* Перенос строк */
 }

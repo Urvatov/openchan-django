@@ -51,6 +51,10 @@ def create_post(request, board, thread):
     post = Post()
     post.user_name = request.POST.get("user_name")
     post.text = request.POST.get("post_text")
+
+    if 'image' in request.FILES:
+        post.image = request.FILES['image']
+    
     post.board = board
     post.thread = thread
 

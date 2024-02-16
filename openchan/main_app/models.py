@@ -26,9 +26,9 @@ class Thread(models.Model):
 class Post(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE, default = 0)
     board = models.ForeignKey(Board, on_delete=models.CASCADE, default = 0)
-
     user_name = models.CharField(max_length = 64, default = "Аноним")
     text = models.TextField(blank = True)
+    image = models.ImageField(upload_to="images/", blank= True, null=True)
     creation_time = models.DateTimeField(auto_now_add = True)
 
 
