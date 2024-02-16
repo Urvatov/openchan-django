@@ -1,0 +1,10 @@
+<div contenteditable="true" id="editor" style="border: 1px solid #ccc; min-height: 100px;"></div>
+<button onclick="formatText('bold')">Жирный</button>
+<button onclick="formatText('italic')">Курсив</button>
+
+<script>
+    function formatText(command) 
+    {
+        document.execCommand(command, false, null);
+    }
+</script>

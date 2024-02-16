@@ -26,6 +26,7 @@ def create_thread(request, board):
         thread.title = request.POST.get("thread_title")
         thread.text = request.POST.get("thread_text")
         thread.image = request.FILES['image']
+        thread.user_ip = request.META.get('REMOTE_ADDR', None)
         thread.board = board
         thread.save()
         print(f"Тред {thread.title} создан")
@@ -50,6 +51,7 @@ def thread(request, board_tag, thread_id):
 def create_post(request, board, thread):
     post = Post()
     post.user_name = request.POST.get("user_name")
+    post.user_ip = request.META.get('REMOTE_ADDR', None)
     post.text = request.POST.get("post_text")
 
     if 'image' in request.FILES:

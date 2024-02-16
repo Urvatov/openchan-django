@@ -18,7 +18,7 @@
         {% csrf_token %}
         <p><input type="text" placeholder="Название" name="thread_title" required>
         <br><textarea cols="30" rows="10" name="thread_text" placeholder="Текст"></textarea></p>
-        <p>Добавить файл<input type="file" name="image" value="" required></p>
+        <p>Добавить файл<input type="file" name="image" accept=".jpg, .jpeg, .png" required></p>
         <p><button type="submit">Отправить</button></p>
     </form>
 </div>
