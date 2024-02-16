@@ -64,6 +64,7 @@ table, th, td
 {
     max-height: 100%;
     max-width: 100%;
+    border: 1px solid lawngreen;
 }
 
 .thread-image
@@ -95,13 +96,6 @@ table, th, td
 {
     border: 1px red solid;
 }
-
-button
-{
-    
-}
-
-
 
 .thread-post
 {

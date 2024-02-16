@@ -7,7 +7,14 @@ class Board(models.Model):
     all_posts = models.IntegerField()
 
     def __str__(self) -> str:
-        return self.tag
+        return f"{self.id}. /{self.tag}/ {self.title}"
+    
+
+    class Meta:
+        verbose_name = "Доски"
+        verbose_name_plural = "Доски"
+
+
 
 class Thread(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, default = 0)
@@ -21,7 +28,11 @@ class Thread(models.Model):
     all_posts = models.IntegerField(default = 0)
 
     def __str__(self) -> str:
-        return self.title
+        return f"{self.id}. {self.title}"
+    
+    class Meta:
+        verbose_name = "Треды"
+        verbose_name_plural = "Треды"
     
 class Post(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE, default = 0)
@@ -33,7 +44,11 @@ class Post(models.Model):
 
 
     def __str__(self) -> str:
-        return self.id
+        return f"{self.id}. /{self.board.tag}/->{self.thread.title}"
+    
+    class Meta:
+        verbose_name = "Посты"
+        verbose_name_plural = "Посты"
 
 
 

@@ -26,7 +26,7 @@
 
 <p>
 <div class="search">
-<select>
+<select class="sort-select" onchange="sortThreads()">
     <option>По бампам</option>
     <option>По времени</option>
     <option>По постам</option>
@@ -38,9 +38,9 @@
 </div>
 </p>
 
-<div class = "thread-grid">
+<div class = "thread-grid" id="thread-grid">
     {%for thread in threads%}
-    <div class = "thread-window">
+    <div class = "thread-window" data-creation-time="{{thread.creation_time}}" data-update-time="{{thread.update_time}}" data-all-posts="{{thread.all_posts}}">
         <a href="{% url 'thread' board_tag=board_tag thread_id=thread.id %}"><img class="thread-image" src="{{thread.image.url}}" alt="картинка"></a>
         <div class="thread-title"> Постов: {{thread.all_posts}}/ Файлов: 0
             <br>{{thread.title}}</div>
@@ -50,4 +50,5 @@
 
 
 <script src="{% static 'main_app/js/board.js' %}"></script> 
+<script src="{% static 'main_app/js/sort.js' %}"></script> 
 {%endblock body%}
