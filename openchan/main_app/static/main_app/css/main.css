@@ -57,6 +57,13 @@ table, th, td
     max-height: 400px;
     min-height: 400px;
     min-width: 256px;
+    overflow: hidden;
+}
+
+.thread-window:hover
+{
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .thread-image
@@ -80,30 +87,33 @@ table, th, td
 
 .thread-text
 {
-    
+    word-wrap: break-word;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-
-
-.posting-form button, textarea, input
+.posting-form
 {
-    background-color: #192734;
-    color: white;
+    border: 1px red solid;
 }
+
+button
+{
+    
+}
+
+
 
 .thread-post
 {
     background-color: #192734;
-
     border: 1px solid #38444d;
     border-radius: 10px;
-
     display: inline-block;
     padding: 5px;
 
-    text-wrap: pretty;
+    overflow: hidden;
+    word-wrap: break-word;
+    max-width: 80%;
 }
 
 .post-info
@@ -111,9 +121,11 @@ table, th, td
     color: #7d7d7d;
 }
 
-.post-text {
-    word-wrap: break-word; /* Перенос слов */
-    overflow-wrap: break-word; /* Поддержка старых браузеров */
-    overflow: hidden; /* Скрытие текста, выходящего за границы */
-    white-space: pre-line; /* Перенос строк */
+.header
+{
+    background-color: #15202b;
+    position: sticky;
+    top: 0;
+
+    z-index: 1;
 }

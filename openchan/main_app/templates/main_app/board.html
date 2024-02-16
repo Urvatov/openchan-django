@@ -7,21 +7,22 @@
 <h1>OpenChan</h1>
 <a href="{% url 'home' %}">На главную</a>
 
+
 <p>Каталог /{{board_tag}}/</p>
 
-<button onclick="togglePostingForm()" id="posting-button">Создать тред </button>
+<p><button onclick="togglePostingForm()" id="posting-button">Создать тред </button></p>
 
-<p>
+
 <div class="posting-form" id="posting-form" style="display: none;">
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <p><input type="text" placeholder="Название" name="thread_title" required></p>
-        <p><textarea cols="30" rows="10" name="thread_text" placeholder="Текст"></textarea></p>
+        <p><input type="text" placeholder="Название" name="thread_title" required>
+        <br><textarea cols="30" rows="10" name="thread_text" placeholder="Текст"></textarea></p>
         <p>Добавить файл<input type="file" name="image" value="" required></p>
         <p><button type="submit">Отправить</button></p>
     </form>
 </div>
-</p>
+
 
 <p>
 <div class="search">
@@ -43,7 +44,7 @@
         <a href="{% url 'thread' board_tag=board_tag thread_id=thread.id %}"><img class="thread-image" src="{{thread.image.url}}" alt="картинка"></a>
         <div class="thread-title"> Постов: {{thread.all_posts}}/ Файлов: 0
             <br>{{thread.title}}</div>
-        <div class="thread-text">{{thread.text}} {{MEDIA_URL}}</div>
+        <div class="thread-text">{{thread.text}}</div>
     </div>
     {% endfor %}
 

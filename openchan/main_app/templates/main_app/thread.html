@@ -4,7 +4,27 @@
 
 {%block body%}
 
+<div class="header">
 <a href=" {% url 'home' %}"> На главную</a>
+<a href="{% url 'board' board_tag=board.tag %}">Назад</a>
+</div>
+
+<div class="center">
+<h1>OpenChan</h1>
+<h1>/{{board.tag}}/</h1>
+
+<p><button onclick="togglePostingForm('1')" id="posting-button1">Ответить в тред</button></p>
+
+<div class="posting-form" id="posting-form1" style="display: none;">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name"></p>
+        <p><textarea cols="30" rows="10" name="post_text" placeholder="Текст"></textarea></p>
+        <p>Добавить файл<input type="file" value="" name="image"></p>
+        <p><button type="submit">Отправить</button></p>
+    </form>
+</div>
+</div>
 
 <p><div class="thread-post">
     <div class="post-info">ОП {{thread.creation_time|date:"d/Y/H:i" }} {{thread.id}}</div>
@@ -26,8 +46,13 @@
 
 {% endfor %}
 
+<div class="center">
 
-<div class="posting-form" id="posting-form">
+
+<p><button onclick="togglePostingForm('2')" id="posting-button2">Ответить в тред</button></p>
+
+
+<div class="posting-form" id="posting-form2" >
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name"></p>
@@ -36,7 +61,7 @@
         <p><button type="submit">Отправить</button></p>
     </form>
 </div>
+</div>
 
-
-
+<script src="{% static 'main_app/js/thread.js' %}"></script> 
 {%endblock body%}
