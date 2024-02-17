@@ -1,6 +1,5 @@
 
 function togglePostingForm(index)
-
 {
     var form = document.getElementById("posting-form" + index)
     var button1 = document.getElementById("posting-button1")
@@ -17,4 +16,16 @@ function togglePostingForm(index)
         form.style.display = "none"; // Скрываем div
         button.textContent = "Ответить в тред"
     }
+}
+
+
+function reply(id)
+{
+    post = document.getElementById(id)
+    var form = document.getElementById("posting-form2")
+    form_text = document.getElementById("posting-form-text")
+    form_text.value += "<<" + id + "\n"
+    form.style.display = "inline-block"
+    window.location.href = "#bottom"
+   
 }

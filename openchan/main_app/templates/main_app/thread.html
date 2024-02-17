@@ -28,9 +28,8 @@
 </div>
 
 
-
-
 <a href="#bottom">Вниз</a>
+
 <p><div class="thread-post">
     <div class="post-info">ОП {{thread.creation_time|date:"d/Y/H:i" }} {{thread.id}}</div>
     <a href="{{thread.image.url}}" target="_blank">
@@ -40,14 +39,17 @@
     <p>{{thread.text}}</p>
 </div></p>
 
+<hr color="lawngreen">
 
 
 {% for post in posts %}
-<p><div class="thread-post">
-    <div class="post-info">{{post.user_name}} {{post.creation_time|date:"d/m/Y:i"}} {{post.creation_time|date:"H:i:s"}} {{post.id}}</div>
+<p><div class="thread-post" id="{{post.id}}">
+    <div class="post-info">{{post.user_name}} {{post.creation_time|date:"d/m/Y:i"}} {{post.creation_time|date:"H:i:s"}} {{post.id}} <button onclick="reply('{{post.id}}')">Ответить</button></div>
+
     {% if post.image %}
     <a href="{{post.image.url}}" target="_blank"><img class="thread-image" src="{{post.image.url}}" alt="картинка"></a>
     {% endif %}
+
     <p class="post-text">{{post.text}}</p>
 </div></p>
 
@@ -62,10 +64,12 @@
 <div class="posting-form" id="posting-form2" style="display: none;">
     <form action="#bottom" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name"></p>
-        <p><textarea cols="30" rows="10" name="post_text" placeholder="Текст"></textarea></p>
+
+        <p><input type="text"  placeholder="Аноним..." value="Аноним" name="user_name"></p>
+        <p><textarea id="posting-form-text" cols="30" rows="10" name="post_text" placeholder="Текст"></textarea></p>
         <p>Добавить файл<input type="file" value="" name="image"></p>
         <p><button type="submit">Отправить</button></p>
+
     </form>
 </div>
 </div>
