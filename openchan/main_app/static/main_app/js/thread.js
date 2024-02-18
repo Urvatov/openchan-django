@@ -24,8 +24,16 @@ function reply(id)
     post = document.getElementById(id)
     var form = document.getElementById("posting-form2")
     form_text = document.getElementById("posting-form-text")
+
     form_text.value += "<<" + id + "\n"
+    
     form.style.display = "inline-block"
-    window.location.href = "#bottom"
-   
+    form_text.focus()
 }
+
+function edit()
+{   
+    form_text = document.getElementById("46")
+    form_text.value.replace(/\n/g, '<br/>');
+}
+

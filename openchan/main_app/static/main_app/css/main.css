@@ -92,10 +92,7 @@ table, th, td
     overflow: hidden;
 }
 
-.posting-form
-{
-    border: 1px red solid;
-}
+
 
 .thread-post
 {
@@ -107,7 +104,7 @@ table, th, td
 
     overflow: hidden;
     word-wrap: break-word;
-    max-width: 80%;
+    max-width: 60%;
 }
 
 .post-info
@@ -122,4 +119,44 @@ table, th, td
     top: 0;
 
     z-index: 1;
+}
+
+
+
+.side-form
+{
+    display: inline-block;
+    left: 70%;
+    margin-right: 0%;
+    top: 600px;
+    position: fixed;
+    z-index: 1;
+}
+
+
+.test-form
+{
+    display: inline-block;
+}
+
+.username-form input
+{
+    background-color: #192734;
+    color: white;
+    width: 100%;
+}
+
+.posting-form-textarea textarea
+{
+    background-color: #192734;
+    color: white;
+    width: 100%;
+    min-width: 100%;
+}
+
+.add-file
+{
+    border: 2px dashed white;
+    width: 100%;
+    cursor: pointer;
 }

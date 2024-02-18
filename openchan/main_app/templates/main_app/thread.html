@@ -3,78 +3,107 @@
 
 
 {%block body%}
+
 <div id="header"></div>
 <div class="header">
-<a href=" {% url 'home' %}"> На главную</a>
-<a href="{% url 'board' board_tag=board.tag %}">Назад</a>
-
+    <a href=" {% url 'home' %}"> На главную</a>
+    <a href="{% url 'board' board_tag=board.tag %}">Назад</a>
 </div>
 
 <div class="center">
-<h1>OpenChan</h1>
-<h1>/{{board.tag}}/</h1>
+    <h1>OpenChan</h1>
+    <h1>/{{board.tag}}/</h1>
 
-<p><button onclick="togglePostingForm('1')" id="posting-button1">Ответить в тред</button></p>
+    <p><button onclick="togglePostingForm('1')" id="posting-button1">Ответить в тред</button></p>
 
-<div class="posting-form" id="posting-form1" style="display: none;">
-    <form action="" method="post" enctype="multipart/form-data" accept=".jpg .png .jpeg">
+    <div class="posting-form" id="posting-form1" style="display: none;">
+        <form method="post" enctype="multipart/form-data" accept=".jpg .png .jpeg">
+            {% csrf_token %}
+            <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name"></p>
+            <p><textarea cols="30" rows="10" name="post_text" placeholder="Текст"></textarea></p>
+            <p>Добавить файл<input type="file" value="" name="image"></p>
+            <p><button type="submit">Отправить</button></p>
+        </form>
+    </div>
+</div>
+
+<div class="side-form posting-form">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name"></p>
-        <p><textarea cols="30" rows="10" name="post_text" placeholder="Текст"></textarea></p>
-        <p>Добавить файл<input type="file" value="" name="image"></p>
-        <p><button type="submit">Отправить</button></p>
+        <div class="username-form">
+            <input type="text" placeholder="Аноним..." value="Аноним" name="user_name">
+        </div>
+
+        <div class="posting-form-textarea" >
+            <textarea id="posting-form-text" cols="30" rows="15" wrap="hard" name="post_text" placeholder="Текст" ></textarea>
+        </div>
+
+        <div class="add-file">
+            ДОБАВИТЬ ФАЙЛ<input type="file" name="image">
+        </div>
+
+        <div class="submit-button" onclick="test()">
+            <button onclick="edit()" type="submit" >Отправить</button>
+        </div>
     </form>
 </div>
-</div>
+
 
 
 <a href="#bottom">Вниз</a>
 
-<p><div class="thread-post">
+<p>
+<div class="thread-post">
     <div class="post-info">ОП {{thread.creation_time|date:"d/Y/H:i" }} {{thread.id}}</div>
     <a href="{{thread.image.url}}" target="_blank">
         <img class="thread-image" src="{{thread.image.url}}" alt="обложка треда">
     </a>
     <p><b>{{thread.title}}</b></p>
     <p>{{thread.text}}</p>
-</div></p>
+</div>
+</p>
 
 <hr color="lawngreen">
 
 
 {% for post in posts %}
-<p><div class="thread-post" id="{{post.id}}">
-    <div class="post-info">{{post.user_name}} {{post.creation_time|date:"d/m/Y:i"}} {{post.creation_time|date:"H:i:s"}} {{post.id}} <button onclick="reply('{{post.id}}')">Ответить</button></div>
+<p>
+<div class="thread-post" id="{{post.id}}">
+    <div class="post-info">{{post.user_name}} {{post.creation_time|date:"d/m/Y:i"}} {{post.creation_time|date:"H:i:s"}}
+        {{post.id}} <button onclick="reply('{{post.id}}')">Ответить</button></div>
 
     {% if post.image %}
     <a href="{{post.image.url}}" target="_blank"><img class="thread-image" src="{{post.image.url}}" alt="картинка"></a>
     {% endif %}
 
-    <p class="post-text">{{post.text}}</p>
-</div></p>
+    <p class="post-text" style="white-space: pre-wrap;">{{post.text}}</p>
+</div>
+</p>
 
 {% endfor %}
 <a href="#header">Вверх</a>
 
+
+
+
+
 <div class="center">
 
-<p><button onclick="togglePostingForm('2')" id="posting-button2">Ответить в тред</button></p>
 
+    <p><button onclick="togglePostingForm('2')" id="posting-button2">Ответить в тред</button></p>
 
-<div class="posting-form" id="posting-form2" style="display: none;">
-    <form action="#bottom" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        <p><input type="text"  placeholder="Аноним..." value="Аноним" name="user_name"></p>
-        <p><textarea id="posting-form-text" cols="30" rows="10" name="post_text" placeholder="Текст"></textarea></p>
-        <p>Добавить файл<input type="file" value="" name="image"></p>
-        <p><button type="submit">Отправить</button></p>
-
-    </form>
-</div>
+    <div class="posting-form" id="posting-form2" style="display: none;">
+        <form  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name"></p>
+            <p><textarea id="posting-form-text" cols="30" rows="10" name="post_text" placeholder="Текст"></textarea></p>
+            <p>Добавить файл<input type="file" value="" name="image"></p>
+            <p><button type="submit">Отправить</button></p>
+        </form>
+    </div>
 </div>
 
 <div id="bottom"></div>
 
-<script src="{% static 'main_app/js/thread.js' %}"></script> 
+<script src="{% static 'main_app/js/thread.js' %}"></script>
 {%endblock body%}
