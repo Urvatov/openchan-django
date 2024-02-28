@@ -1,5 +1,5 @@
 from django.contrib import admin
-from main_app.models import Board, Thread, Post
+from main_app.models import Board, Thread, Post, File
 # Register your models here.
 
 
@@ -30,3 +30,7 @@ class PostdAdmin(admin.ModelAdmin):
 
     ordering = ['-creation_time']
 
+@admin.register(File)
+class FileAdmin(admin.ModelAdmin):
+    list_display = ('id', 'file')
+    search_fields = ('id', 'file')
