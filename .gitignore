@@ -1,5 +1,7 @@
-
 *.pyc
 *.bkp
-*.pyc
-*.pyc
+
+
+openchan/media/files/
+openchan/media/images/
+openchan/main_app/__pychache__
