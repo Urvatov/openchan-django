@@ -72,17 +72,15 @@
     <div class="post-info">{{post.user_name}} {{post.creation_time|date:"d/m/Y:i"}} {{post.creation_time|date:"H:i:s"}}
         {{post.id}} <button onclick="reply('{{post.id}}')">Ответить</button></div>
 
-    {% if post.image %}
-    <a href="{{post.image.url}}" target="_blank"><img class="thread-image" src="{{post.image.url}}" alt="картинка"></a>
-    {% endif %}
-
+    {% for file in post.files.all %}
+            <a href="{{ file.file.url }}" target="_blank"><img class="thread-image" src="{{ file.file.url }}" alt="картинка"></a>
+    {% endfor %}
+    
     <p class="post-text" style="white-space: pre-wrap;">{{post.text}}</p>
 </div>
 </p>
-
 {% endfor %}
 <a href="#header">Вверх</a>
-
 
 
 <div class="center">

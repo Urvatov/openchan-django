@@ -36,23 +36,16 @@ class Thread(models.Model):
     class Meta:
         verbose_name = "Тред"
         verbose_name_plural = "Треды"
-        ordering = ['-creation_time']
+        ordering = ['-update_time']
     
-class Post(models.Model):
-    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, default = 0)
-    board = models.ForeignKey(Board, on_delete=models.CASCADE, default = 0)
-    user_name = models.CharField(max_length = 64, default = "Аноним")
-    user_ip = models.GenericIPAddressField(default = 0)
-    text = models.TextField(blank = True)
-    creation_time = models.DateTimeField(auto_now_add = True)
+
 
 
     def __str__(self) -> str:
         return f"{self.id}. /{self.board.tag}/->{self.thread.title}"
     
-    class Meta:
-        verbose_name = "Пост"
-        verbose_name_plural = "Посты"
+   
+        
 
 class File(models.Model):
     file = models.FileField(upload_to="files/")
@@ -62,9 +55,20 @@ class File(models.Model):
         return f"{self.id}. {self.file}"
 
     class Meta:
-        verbose_name = "Файд"
+        verbose_name = "Файл"
         verbose_name_plural = "Файлы"
 
-class File_Post(models.Model):
-    file = models.ForeignKey(File, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+class Post(models.Model):
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, default = 0)
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, default = 0)
+    user_name = models.CharField(max_length = 64, default = "Аноним")
+    user_ip = models.GenericIPAddressField(default = 0)
+    text = models.TextField(blank = True)
+    creation_time = models.DateTimeField(auto_now_add = True)
+    files = models.ManyToManyField(File, blank=True)
+
+
+    
+    class Meta:
+        verbose_name = "Пост"
+        verbose_name_plural = "Посты"

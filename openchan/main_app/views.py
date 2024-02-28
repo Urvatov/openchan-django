@@ -1,10 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.http import HttpResponse
 
 from main_app.models import Post
 
-from main_app.models import Board, Thread, File, File_Post
+from main_app.models import Board, Thread, File
 
 
 def index(request):
@@ -40,8 +39,11 @@ def thread(request, board_tag, thread_id):
     board_instance = Board.objects.get(tag=board_tag)
     thread_instance = Thread.objects.get(id=thread_id)
     posts = Post.objects.filter(thread_id=thread_id)
-    data = {"posts" : posts, "thread" : thread_instance, "board" : board_instance}
 
+    data = {"posts" : posts, 
+            "thread" : thread_instance, 
+            "board" : board_instance}
+    
     if request.method == "POST":
         return create_post(request, board_instance, thread_instance)
 
@@ -71,12 +73,9 @@ def create_post(request, board, thread):
             file.file = f
             file.save()
 
-            file_post = File_Post()
-            file_post.file_id = file
-            file_post.post_id = post
-            file_post.save()
+            post.files.add(file)
 
-    
+
 
     print(f"Пост {post.id} создан")
 

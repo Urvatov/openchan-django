@@ -1,7 +1,5 @@
 *.pyc
 *.bkp
 
-
 openchan/media/files/
 openchan/media/images/
-openchan/main_app/__pychache__
