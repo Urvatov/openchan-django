@@ -19,9 +19,9 @@
     <div class="posting-form" id="posting-form1" style="display: none;">
         <form method="post" enctype="multipart/form-data" accept=".jpg .png .jpeg">
             {% csrf_token %}
-            <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name"></p>
-            <p><textarea cols="30" rows="10" name="post_text" placeholder="Текст"></textarea></p>
-            <p>Добавить файл<input type="file" value="" name="image"></p>
+            <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name" maxlength="64"></p>
+            <p><textarea cols="30" rows="10" name="post_text" placeholder="Текст" maxlength="15000"></textarea></p>
+            <p>Добавить файл<input type="file" value="" name="file" multiple></p>
             <p><button type="submit">Отправить</button></p>
         </form>
     </div>
@@ -31,19 +31,19 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="username-form">
-            <input type="text" placeholder="Аноним..." value="Аноним" name="user_name">
+            <input type="text" placeholder="Аноним..." value="Аноним" name="user_name" maxlength="64">
         </div>
 
-        <div class="posting-form-textarea" >
-            <textarea id="posting-form-text" cols="30" rows="15" wrap="hard" name="post_text" placeholder="Текст" ></textarea>
+        <div class="posting-form-textarea">
+            <textarea id="posting-form-text" cols="30" rows="15" wrap="hard" name="post_text" placeholder="Текст" maxlength="15000"></textarea>
         </div>
 
         <div class="add-file">
-            ДОБАВИТЬ ФАЙЛ<input type="file" name="image">
+            ДОБАВИТЬ ФАЙЛ<input type="file" name="file" multiple>
         </div>
 
         <div class="submit-button" onclick="test()">
-            <button onclick="edit()" type="submit" >Отправить</button>
+            <button onclick="edit()" type="submit">Отправить</button>
         </div>
     </form>
 </div>
@@ -85,19 +85,16 @@
 
 
 
-
-
 <div class="center">
-
 
     <p><button onclick="togglePostingForm('2')" id="posting-button2">Ответить в тред</button></p>
 
     <div class="posting-form" id="posting-form2" style="display: none;">
-        <form  method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name"></p>
-            <p><textarea id="posting-form-text" cols="30" rows="10" name="post_text" placeholder="Текст"></textarea></p>
-            <p>Добавить файл<input type="file" value="" name="image"></p>
+            <p><input type="text" placeholder="Аноним..." value="Аноним" name="user_name" maxlength="64"></p>
+            <p><textarea id="posting-form-text" cols="30" rows="10" name="post_text" placeholder="Текст" maxlength="15000"></textarea></p>
+            <p>Добавить файл<input type="file" value="" name="image" multiple></p>
             <p><button type="submit">Отправить</button></p>
         </form>
     </div>

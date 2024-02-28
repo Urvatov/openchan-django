@@ -1,5 +1,8 @@
 from django.db import models
 
+
+
+
 class Board(models.Model):
     tag = models.CharField(max_length = 64, unique = True)
     title = models.CharField(max_length = 24)
@@ -11,9 +14,8 @@ class Board(models.Model):
     
 
     class Meta:
-        verbose_name = "Доски"
+        verbose_name = "Доска"
         verbose_name_plural = "Доски"
-
 
 
 class Thread(models.Model):
@@ -32,7 +34,7 @@ class Thread(models.Model):
         return f"{self.id}. /{self.board.tag}/ {self.title}"
     
     class Meta:
-        verbose_name = "Треды"
+        verbose_name = "Тред"
         verbose_name_plural = "Треды"
         ordering = ['-creation_time']
     
@@ -42,7 +44,6 @@ class Post(models.Model):
     user_name = models.CharField(max_length = 64, default = "Аноним")
     user_ip = models.GenericIPAddressField(default = 0)
     text = models.TextField(blank = True)
-    image = models.ImageField(upload_to="images/", blank= True, null=True)
     creation_time = models.DateTimeField(auto_now_add = True)
 
 
@@ -50,6 +51,20 @@ class Post(models.Model):
         return f"{self.id}. /{self.board.tag}/->{self.thread.title}"
     
     class Meta:
-        verbose_name = "Посты"
+        verbose_name = "Пост"
         verbose_name_plural = "Посты"
 
+class File(models.Model):
+    file = models.FileField(upload_to="files/")
+
+
+    def __str__(self) -> str:
+        return f"{self.id}. {self.file}"
+
+    class Meta:
+        verbose_name = "Файд"
+        verbose_name_plural = "Файлы"
+
+class File_Post(models.Model):
+    file = models.ForeignKey(File, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)

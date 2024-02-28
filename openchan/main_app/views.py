@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from main_app.models import Post
 
-from main_app.models import Board, Thread
+from main_app.models import Board, Thread, File, File_Post
 
 
 def index(request):
@@ -54,9 +54,6 @@ def create_post(request, board, thread):
     post.user_ip = request.META.get('REMOTE_ADDR', None)
     post.text = request.POST.get("post_text")
 
-    if 'image' in request.FILES:
-        post.image = request.FILES['image']
-    
     post.board = board
     post.thread = thread
 
@@ -66,6 +63,20 @@ def create_post(request, board, thread):
     board.save()
 
     post.save()
+
+
+    if 'file' in request.FILES:
+        for f in request.FILES.getlist('file'):
+            file = File()
+            file.file = f
+            file.save()
+
+            file_post = File_Post()
+            file_post.file_id = file
+            file_post.post_id = post
+            file_post.save()
+
+    
 
     print(f"Пост {post.id} создан")
 

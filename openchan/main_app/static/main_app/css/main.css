@@ -146,6 +146,11 @@ table, th, td
     width: 100%;
 }
 
+.username-form
+{
+    margin-bottom: 5px;
+}
+
 .posting-form-textarea textarea
 {
     background-color: #192734;

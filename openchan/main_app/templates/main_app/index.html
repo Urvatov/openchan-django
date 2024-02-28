@@ -1,38 +1,37 @@
-
 {% extends 'main_app/base.html' %}
 
 {%block body%}
 
 <div class="center">
 
-<h1 style="color: lawngreen;">OpenChan</h1>
+  <h1 style="color: lawngreen;">OpenChan</h1>
 
-<p>An open source imageboard</p>
+  <p>An open source imageboard</p>
 
-<a href="/admin">admin</a>
-<p>Доски:</p>
+  <a href="/admin">admin</a>
+  <p>Доски:</p>
 
-<table>
+  <table>
     <thead>
-        <tr>
-            <th>Доска</th>
-            <th>Название</th>
-            <th>Описание</th>
-            <th>Всего постов</th>
-        </tr>
+      <tr>
+        <th>Доска</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Всего постов</th>
+      </tr>
     </thead>
 
-{%for board in boards%}
+    {%for board in boards%}
     <tbody>
-        <tr>
-            <td><a href="{% url 'board' board_tag=board.tag %}"> /{{board.tag}}/</a></td>
-            <td>{{board.title}}</td>
-            <td>{{board.description}}</td>
-            <td>{{board.all_posts}}</td>
-        </tr>
+      <tr>
+        <td><a href="{% url 'board' board_tag=board.tag %}"> /{{board.tag}}/</a></td>
+        <td>{{board.title}}</td>
+        <td>{{board.description}}</td>
+        <td>{{board.all_posts}}</td>
+      </tr>
     </tbody>
-{% endfor %}
-</table>
+    {% endfor %}
+  </table>
 
 </div>
 {%endblock body%}
