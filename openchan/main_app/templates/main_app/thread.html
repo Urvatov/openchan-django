@@ -39,7 +39,11 @@
         </div>
 
         <div class="add-file">
-            ДОБАВИТЬ ФАЙЛ<input type="file" name="file" multiple>
+            ДОБАВИТЬ ФАЙЛ<input type="file" name="file" id="file-input" onchange="fileInput()" multiple>
+        </div>
+
+        <div class="file-list" id="file-list">
+
         </div>
 
         <div class="submit-button" onclick="test()">
@@ -54,7 +58,7 @@
 
 <p>
 <div class="thread-post">
-    <div class="post-info">ОП {{thread.creation_time|date:"d/Y/H:i" }} {{thread.id}}</div>
+    <div class="post-info">ОП {{thread.creation_time|date:"d/m/Y"}} {{thread.creation_time|date:"H:i:s"}} {{thread.id}}</div>
     <a href="{{thread.image.url}}" target="_blank">
         <img class="thread-image" src="{{thread.image.url}}" alt="обложка треда">
     </a>
@@ -69,11 +73,11 @@
 {% for post in posts %}
 <p>
 <div class="thread-post" id="{{post.id}}">
-    <div class="post-info">{{post.user_name}} {{post.creation_time|date:"d/m/Y:i"}} {{post.creation_time|date:"H:i:s"}}
+    <div class="post-info">{{post.user_name}} {{post.creation_time|date:"d/m/Y"}} {{post.creation_time|date:"H:i:s"}}
         {{post.id}} <button onclick="reply('{{post.id}}')">Ответить</button></div>
 
     {% for file in post.files.all %}
-            <a href="{{ file.file.url }}" target="_blank"><img class="thread-image" src="{{ file.file.url }}" alt="картинка"></a>
+        <a href="{{ file.file.url }}" target="_blank"><img class="thread-image" src="{{ file.file.url }}"  title="{{ file.file.url }}" alt="файл"></a>
     {% endfor %}
     
     <p class="post-text" style="white-space: pre-wrap;">{{post.text}}</p>
@@ -101,4 +105,5 @@
 <div id="bottom"></div>
 
 <script src="{% static 'main_app/js/thread.js' %}"></script>
+<script src="{% static 'main_app/js/file-input.js' %}"></script>
 {%endblock body%}

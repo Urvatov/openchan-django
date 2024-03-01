@@ -128,7 +128,7 @@ table, th, td
     display: inline-block;
     left: 70%;
     margin-right: 0%;
-    top: 600px;
+    top: 400px;
     position: fixed;
     z-index: 1;
 }

@@ -16,7 +16,6 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-
 def run_server():
     if 'runserver' not in sys.argv:
         sys.argv.append('runserver')
@@ -28,5 +27,5 @@ def cmd():
     pass
 
 if __name__ == '__main__':
-    #run_server()
+    run_server()
     main()

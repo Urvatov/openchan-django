@@ -1,8 +1,6 @@
 from django.db import models
 
 
-
-
 class Board(models.Model):
     tag = models.CharField(max_length = 64, unique = True)
     title = models.CharField(max_length = 24)
@@ -10,7 +8,7 @@ class Board(models.Model):
     all_posts = models.IntegerField(default = 0)
 
     def __str__(self) -> str:
-        return f"{self.id}. /{self.tag}/ {self.title}"
+        return f"Доска: {self.id}. /{self.tag}/ {self.title}"
     
 
     class Meta:
@@ -31,7 +29,7 @@ class Thread(models.Model):
     all_posts = models.IntegerField(default = 0)
 
     def __str__(self) -> str:
-        return f"{self.id}. /{self.board.tag}/ {self.title}"
+        return f"Тред: {self.id}. /{self.board.tag}/ {self.title}"
     
     class Meta:
         verbose_name = "Тред"
@@ -39,20 +37,15 @@ class Thread(models.Model):
         ordering = ['-update_time']
     
 
-
-
     def __str__(self) -> str:
-        return f"{self.id}. /{self.board.tag}/->{self.thread.title}"
+        return f"Тред: {self.id}. /{self.board.tag}/->{self.title}"
     
    
-        
-
 class File(models.Model):
     file = models.FileField(upload_to="files/")
 
-
     def __str__(self) -> str:
-        return f"{self.id}. {self.file}"
+        return f"Файл: {self.id}. {self.file}"
 
     class Meta:
         verbose_name = "Файл"
@@ -65,10 +58,9 @@ class Post(models.Model):
     user_ip = models.GenericIPAddressField(default = 0)
     text = models.TextField(blank = True)
     creation_time = models.DateTimeField(auto_now_add = True)
+
     files = models.ManyToManyField(File, blank=True)
 
-
-    
     class Meta:
         verbose_name = "Пост"
         verbose_name_plural = "Посты"

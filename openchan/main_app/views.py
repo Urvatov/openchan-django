@@ -76,7 +76,6 @@ def create_post(request, board, thread):
             post.files.add(file)
 
 
-
     print(f"Пост {post.id} создан")
 
     return redirect(request.path)

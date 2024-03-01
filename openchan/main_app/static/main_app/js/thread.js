@@ -1,4 +1,3 @@
-
 function togglePostingForm(index)
 {
     var form = document.getElementById("posting-form" + index)
